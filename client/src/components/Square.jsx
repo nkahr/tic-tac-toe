@@ -18,7 +18,6 @@ class Square extends React.Component{
   }
 
   handleOnClick() {
-    // var currentPlayer = "x"
     this.props.handleClick(this.props.currentPlayer, this.props.ind)
   }
 

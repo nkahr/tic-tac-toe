@@ -1,5 +1,6 @@
 import React from 'react'
-import Grid from '../components/Grid'
+import Square from '../components/Square'
+import GameFunctions from '../models/GameFunctions'
 
 class GameContainer extends React.Component {
   constructor(props) {
@@ -13,14 +14,27 @@ class GameContainer extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
+
+
   render() {
+
+    const arrayOfSquares = this.state.squareStates.map((squareState, index) => {
+      if (squareState == "x") {
+        return <Square className="x" key={index} handleClick={this.handleClick} currentPlayer={this.state.currentPlayer}/>
+      } else if (squareState == "o") {
+        return <Square className="o" key={index} handleClick={this.handleClick} currentPlayer={this.state.currentPlayer} />
+      } else {
+        return <Square className=" " key={index} ind={index} handleClick={this.handleClick} currentPlayer={this.state.currentPlayer} />
+      }
+    })
+
     return (
-      <div> 
-        <h1> TIC TAC TOE </h1>
-        <Grid squareStates={this.state.squareStates} handleClick={this.handleClick} currentPlayer={this.state.currentPlayer}/>
+      <div className="grid"> 
+        {arrayOfSquares}
       </div>
     )
   }
+
 
   handleClick(currentPlayer, key) {
     this.setState({currentKey: key})
